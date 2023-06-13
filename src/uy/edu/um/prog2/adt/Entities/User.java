@@ -1,6 +1,10 @@
 package uy.edu.um.prog2.adt.Entities;
 
 public class User {
+    public User(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     private long id;
     private String name;

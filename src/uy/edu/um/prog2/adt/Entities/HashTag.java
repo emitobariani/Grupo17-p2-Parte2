@@ -1,6 +1,11 @@
 package uy.edu.um.prog2.adt.Entities;
 
 public class HashTag {
+    public HashTag(long id, String text) {
+        this.id = id;
+        this.text = text;
+    }
+
     private long id;
     private String text;
 

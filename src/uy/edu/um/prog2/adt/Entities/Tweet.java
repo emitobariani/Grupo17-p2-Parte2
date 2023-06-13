@@ -1,6 +1,13 @@
 package uy.edu.um.prog2.adt.Entities;
 
 public class Tweet {
+    public Tweet(long id, String content, String source, boolean isRetweet) {
+        this.id = id;
+        this.content = content;
+        this.source = source;
+        this.isRetweet = isRetweet;
+    }
+
     private long id;
     private String content;
     private String source;
