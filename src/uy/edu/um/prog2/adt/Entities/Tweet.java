@@ -1,5 +1,8 @@
 package uy.edu.um.prog2.adt.Entities;
 
+import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
+import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
+
 public class Tweet {
     public Tweet(long id, String content, String source, boolean isRetweet) {
         this.id = id;
@@ -12,6 +15,15 @@ public class Tweet {
     private String content;
     private String source;
     private boolean isRetweet;
+    private HashMap<String ,HashTag> HashHashTag;
+
+    public HashMap<String, HashTag> getHashHashTag() {
+        return HashHashTag;
+    }
+
+    public void setHashHashTag(HashMap<String, HashTag> hashHashTag) {
+        HashHashTag = hashHashTag;
+    }
 
     public long getId() {
         return id;

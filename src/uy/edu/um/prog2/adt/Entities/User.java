@@ -1,5 +1,7 @@
 package uy.edu.um.prog2.adt.Entities;
 
+import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
+
 public class User {
     public User(long id, String name) {
         this.id = id;
@@ -8,6 +10,13 @@ public class User {
 
     private long id;
     private String name;
+
+    private int favourites;
+
+    private boolean verified;
+
+    private Lista<Tweet> tweetLista;
+
 
     public long getId() {
         return id;

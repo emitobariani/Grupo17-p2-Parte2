@@ -4,8 +4,11 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-public class csv {
+public class CVSReader {
 
     public static void leerArchivoCSV(String rutaArchivo) {
         try (FileReader reader = new FileReader(rutaArchivo);
@@ -27,6 +30,8 @@ public class csv {
                 String hashtags = csvRecord.get("hashtags");
                 String source = csvRecord.get("source");
                 String isRetweet = csvRecord.get("is_retweet");
+
+
 
                 // Realizar operaciones con los valores de cada fila
                 System.out.println("ID: " + id);
