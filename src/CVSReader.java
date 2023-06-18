@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Locale;
 
@@ -37,8 +38,11 @@ public class CVSReader {
                 String isRetweet = csvRecord.get("is_retweet");
 
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-                LocalDateTime.parse(date, formato);
-
+                LocalDateTime fecha = null;
+                if (isValidDate(date, formato)) {
+                    fecha = LocalDateTime.parse(date, formato);
+                }
+                System.out.println(fecha);
 
 
             }
@@ -47,4 +51,13 @@ public class CVSReader {
         }
     }
 
+    private static boolean isValidDate(String date, DateTimeFormatter format) {
+        try {
+            LocalDateTime.parse(date, format);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
+    }
 }
