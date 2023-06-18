@@ -1,3 +1,5 @@
+import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
+
 import java.io.FileNotFoundException;
 
 public class Main {
@@ -6,10 +8,11 @@ public class Main {
         CVSReader cvs = new CVSReader();
 
         //cvs.leerArchivoCSV(rutaArchivo);
-
+        String rutaDrivers = "C:\\Users\\ebari\\OneDrive\\Desktop\\test\\drivers.txt";
 
         txtReader t = new txtReader();
-        System.out.println(t.txtreader());
+        t.txtreader(rutaDrivers);
+
 
 
 
