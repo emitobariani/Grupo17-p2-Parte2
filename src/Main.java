@@ -5,7 +5,8 @@ public class Main {
         String rutaArchivo = "C:\\Users\\ebari\\OneDrive\\Desktop\\test\\f1_dataset_test.csv";
         CVSReader cvs = new CVSReader();
 
-        cvs.leerArchivoCSV(rutaArchivo);
+        //cvs.leerArchivoCSV(rutaArchivo);
+
 
         txtReader t = new txtReader();
         System.out.println(t.txtreader());

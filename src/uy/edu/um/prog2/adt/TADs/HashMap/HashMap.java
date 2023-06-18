@@ -20,7 +20,7 @@ public class HashMap<K, V> {
     }
 
     private int hash(K key){
-        return key.hashCode() % capacity;
+        return Math.abs(key.hashCode()) % capacity;
     }
 
     private void resize(){
