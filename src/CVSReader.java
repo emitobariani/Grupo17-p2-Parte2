@@ -42,8 +42,6 @@ public class CVSReader {
                 if (isValidDate(date, formato)) {
                     fecha = LocalDateTime.parse(date, formato);
                 }
-                System.out.println(fecha);
-
 
             }
         } catch (IOException e) {
