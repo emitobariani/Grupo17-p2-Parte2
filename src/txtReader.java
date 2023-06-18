@@ -8,10 +8,12 @@ public class txtReader {
     public void txtreader(String rutaArchivo) throws FileNotFoundException {
         File file = new File(rutaArchivo);
         Scanner scan = new Scanner(file);
+        HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
 
         while(scan.hasNextLine()){
-            System.out.println(scan.nextLine());
+            hashMap.add(scan.nextLine(), 0);
         }
+        System.out.println(hashMap.get("Kevin Magnussen"));
     }
 
 
