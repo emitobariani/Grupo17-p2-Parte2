@@ -11,7 +11,7 @@ public class txtReader {
 
         HashMap<String, String> hashMap = new HashMap<>();
 
-        String rutaArchivo = "C:\\Users\\azael\\Desktop\\obligatorio2023\\drivers";
+        String rutaArchivo = "C:\\Users\\ebari\\OneDrive\\Desktop\\test\\f1_dataset_test.csv";
 
         try(BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
 
