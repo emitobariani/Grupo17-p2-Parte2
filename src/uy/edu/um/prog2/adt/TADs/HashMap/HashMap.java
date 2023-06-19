@@ -29,10 +29,11 @@ public class HashMap<K, V> {
         for (int i = 0; i < capacity; i++) {
             Nodo<K,V> nodo = table[i];
             while (nodo != null){
+                Nodo<K, V> next = nodo.next;
                 int index = hash(nodo.key);
                 nodo.next = newTable[index];
                 newTable[index] = nodo;
-                nodo = nodo.next;
+                nodo = next;
             }
         }
         table = newTable;

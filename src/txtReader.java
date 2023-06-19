@@ -5,15 +5,17 @@ import java.util.Scanner;
 
 public class txtReader {
 
-    public void txtreader(String rutaArchivo) throws FileNotFoundException {
+    public HashMap<String, Integer> txtreader(String rutaArchivo) throws FileNotFoundException {
         File file = new File(rutaArchivo);
         Scanner scan = new Scanner(file);
-        HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+        HashMap<String,Integer> drivers = new HashMap<>();
+        String driver;
 
         while(scan.hasNextLine()){
-            hashMap.add(scan.nextLine(), 0);
+            driver = scan.nextLine();
+            drivers.add(driver,0);
         }
-        System.out.println(hashMap.get("Kevin Magnussen"));
+        return drivers;
     }
 
 
