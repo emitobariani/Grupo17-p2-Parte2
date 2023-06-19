@@ -1,23 +1,23 @@
 package uy.edu.um.prog2.adt.TADs.HashMap;
 
-public class HashMap<K, V> {
+public class HashMap<K, Intger> {
     private int capacity = 10;
     private float loadFactor = 0.75F;
     private int size;
-    private Nodo<K, V>[] table;
+    private Nodo<K, Intger>[] table;
 
     public HashMap() {
         this.table = new Nodo[capacity];
     }
 
-    private class Nodo<K, V> {
+    private class Nodo<K, Integer> {
         K key;
-        V value;
-        Nodo<K, V> next;
+        int value;
+        Nodo<K, Integer> next;
 
-        public Nodo(K key, V value) {
+        public Nodo(K key, Integer value) {
             this.key = key;
-            this.value = value;
+            this.value = (int) value;
         }
     }
 
@@ -27,11 +27,11 @@ public class HashMap<K, V> {
 
     private void resize() {
         int newCapacity = capacity * 2;
-        Nodo<K, V>[] newTable = new Nodo[newCapacity];
+        Nodo<K, Intger>[] newTable = new Nodo[newCapacity];
         for (int i = 0; i < capacity; i++) {
-            Nodo<K, V> nodo = table[i];
+            Nodo<K, Intger> nodo = table[i];
             while (nodo != null) {
-                Nodo<K, V> next = nodo.next;
+                Nodo<K, Intger> next = nodo.next;
                 int index = hash(nodo.key);
                 nodo.next = newTable[index];
                 newTable[index] = nodo;
@@ -42,17 +42,17 @@ public class HashMap<K, V> {
         capacity = newCapacity;
     }
 
-    public void add(K key, V value) {
+    public void add(K key, Intger value) {
         int index = hash(key);
-        Nodo<K, V> nodo = table[index];
+        Nodo<K, Intger> nodo = table[index];
         while (nodo != null) {
             if (nodo.key.equals(key)) {
-                nodo.value = value;
+                nodo.value = (int) value;
                 return;
             }
             nodo = nodo.next;
         }
-        Nodo<K, V> nuevoNodo = new Nodo<>(key, value);
+        Nodo<K, Intger> nuevoNodo = new Nodo<>(key, value);
         nuevoNodo.next = table[index];
         table[index] = nuevoNodo;
         size++;
@@ -63,8 +63,8 @@ public class HashMap<K, V> {
 
     public void remove(K key) {
         int index = hash(key);
-        Nodo<K, V> nodo = table[index];
-        Nodo<K, V> prev = null;
+        Nodo<K, Intger> nodo = table[index];
+        Nodo<K, Intger> prev = null;
         while (nodo != null) {
             if (nodo.key.equals(key)) {
                 if (prev == null) {
@@ -81,9 +81,9 @@ public class HashMap<K, V> {
 
     }
 
-    public V get(K key) {
+    public Object get(K key) {
         int index = hash(key);
-        Nodo<K, V> nodo = table[index];
+        Nodo<K, Intger> nodo = table[index];
         while (nodo != null) {
             if (nodo.key.equals(key)) {
                 return nodo.value;
@@ -97,17 +97,17 @@ public class HashMap<K, V> {
         return this.size;
     }
 
-//    public void plusOne(K key) {
-//        int index = hash(key);
-//        Nodo<K, V> nodo = table[index];
-//        while (nodo != null) {
-//            if (nodo.key.equals(key)) {
-//                nodo.value += 1; // Increment the value by 1 for the existing key
-//                return;
-//            }
-//            nodo = nodo.next;
-//        }
-//}
+    public void plusOne(K key) {
+        int index = hash(key);
+        Nodo<K, Intger> nodo = table[index];
+        while (nodo != null) {
+            if (nodo.key.equals(key)) {
+                nodo.value += 1; // Increment the value by 1 for the existing key
+                return;
+            }
+            nodo = nodo.next;
+        }
+}
 
 
 
