@@ -13,12 +13,14 @@ public class Main {
 
         txtReader t = new txtReader();
         HashMap<String, Integer> drivers = t.txtreader(rutaDrivers);
-        System.out.println(drivers.getSize());
-        drivers.plusOne("Max Verstappen");
+
+        //System.out.println(drivers.getSize());
+
         System.out.println(drivers.get("Max Verstappen"));
 
+        drivers.plusOne("Max Verstappen");
 
-
+        System.out.println(drivers.get("Max Verstappen"));
 
 
     }
