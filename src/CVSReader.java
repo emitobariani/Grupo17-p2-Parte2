@@ -51,6 +51,18 @@ public class CVSReader {
                 System.out.println(fechaUsuario);
                 Long idValue = Long.parseLong(id);
                 Boolean verifiedUser = Boolean.parseBoolean(userVerified);
+                Boolean esRetweet = Boolean.parseBoolean(isRetweet);
+                Integer seguidores = Math.round(Float.parseFloat(userFollowers));
+                Integer favoritos = Math.round(Float.parseFloat(userFavourites));
+                Integer amigos = Math.round(Float.parseFloat(userFriends));
+
+                System.out.println(esRetweet);
+
+
+
+
+
+
                 System.out.println(verifiedUser);
 
 
