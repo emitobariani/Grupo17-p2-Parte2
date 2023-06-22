@@ -4,10 +4,12 @@ public interface Lista <T>{
     void add(T nodo);
     T get(int index);
 
+    T getNodo(T nodo);
     boolean contains(T nodo);
 
     void remove(T nodo);
 
     int size();
+
 
 }

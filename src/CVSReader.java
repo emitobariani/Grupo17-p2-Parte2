@@ -40,30 +40,27 @@ public class CVSReader {
                 DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime fecha = null;
                 LocalDateTime fechaUsuario = null;
+                Integer favoritos;
                 if (isValidDate(date, formato)) {
                     fecha = LocalDateTime.parse(date, formato);
                 }
                 if (isValidDate(userCreated, formato)) {
-                    fechaUsuario = LocalDateTime.parse(date, formato);
+                    fechaUsuario = LocalDateTime.parse(userCreated, formato);
+                }
+                if(isValidFavourites(userFavourites)){
+                     favoritos = (int) Float.parseFloat(userFollowers);
                 }
 
-                System.out.println(fecha);
-                System.out.println(fechaUsuario);
-                Long idValue = Long.parseLong(id);
-                Boolean verifiedUser = Boolean.parseBoolean(userVerified);
-                Boolean esRetweet = Boolean.parseBoolean(isRetweet);
-                Integer seguidores = Math.round(Float.parseFloat(userFollowers));
-                Integer favoritos = Math.round(Float.parseFloat(userFavourites));
-                Integer amigos = Math.round(Float.parseFloat(userFriends));
+                System.out.println(userCreated);
+                //System.out.println(date);
+                //Long idValue = Long.parseLong(id);
+                //Boolean verifiedUser = Boolean.parseBoolean(userVerified);
+                //Boolean esRetweet = Boolean.parseBoolean(isRetweet);
+                //Integer seguidores = Math.round(Float.parseFloat(userFollowers));
+                //Integer favoritos = Math.round(Float.parseFloat(userFavourites));
+                //Integer amigos = Math.round(Float.parseFloat(userFriends));
+                //System.out.println(favoritos);
 
-                System.out.println(esRetweet);
-
-
-
-
-
-
-                System.out.println(verifiedUser);
 
 
 
@@ -83,4 +80,15 @@ public class CVSReader {
         }
 
     }
+
+    private static boolean isValidFavourites(String userFavorites) {
+        try {
+            Integer.parseInt(userFavorites);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+
 }

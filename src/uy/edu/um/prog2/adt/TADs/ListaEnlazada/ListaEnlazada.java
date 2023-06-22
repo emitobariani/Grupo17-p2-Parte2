@@ -52,6 +52,14 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
         return value;
     }
 
+    public T getNodo(T nodo) {
+        Node<T> aux;
+        for(aux = this.first; aux != null && !aux.getValue().equals(nodo);aux = aux.getNext()){
+        }
+        assert aux != null;
+        return aux.getValue();
+    }
+
     @Override
     public void remove(T nodo) {
         Node<T> nodoAnterior = null;
