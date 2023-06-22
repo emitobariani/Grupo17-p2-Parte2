@@ -9,26 +9,26 @@ public class ArbolBinarioBusquedaImpl implements ArbolBinarioBusqueda{
     }
 
     @Override
-    public void insertar(int valor) {
+    public void insertar(String key,int valor) {
 
-        raiz = insertarNodo(raiz, valor);
+        raiz = insertarNodo(raiz,key, valor);
 
     }
 
-    private Nodo insertarNodo(Nodo nodo, int valor){
+    private Nodo insertarNodo(Nodo nodo,String key, int valor){
 
         if(nodo == null){
 
-            nodo = new Nodo(valor);
+            nodo = new Nodo(key,valor);
             return nodo;
         }
 
         if(valor < nodo.valor) {
-            nodo.izquierdo = insertarNodo(nodo.izquierdo, valor);
+            nodo.izquierdo = insertarNodo(nodo.izquierdo,key, valor);
         }
 
         else if (valor > nodo.valor) {
-            nodo.derecho = insertarNodo(nodo.derecho, valor);
+            nodo.derecho = insertarNodo(nodo.derecho,key, valor);
         }
 
         return nodo;

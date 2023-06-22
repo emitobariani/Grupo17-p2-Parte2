@@ -1,5 +1,8 @@
 package uy.edu.um.prog2.adt.TADs.HashMap;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class HashMap<K, Intger> {
     private int capacity = 10;
     private float loadFactor = 0.75F;
@@ -108,8 +111,19 @@ public class HashMap<K, Intger> {
             nodo = nodo.next;
         }
 }
-
-
-
-
+    public Set<K> getKeys() {
+        Set<K> keys = new HashSet<>();
+        for (Nodo<K, Intger> nodo : table) {
+            while (nodo != null) {
+                keys.add(nodo.key);
+                nodo = nodo.next;
+            }
+        }
+        return keys;
+    }
 }
+
+
+
+
+

@@ -152,21 +152,6 @@ public class LeerCSV {
 
 
 
-                /*System.out.println("id : " + id);
-                System.out.println("Name : " + userName);
-                System.out.println("Location : " + userLocation);
-                System.out.println("Desc : " + userDescription);
-                System.out.println("Created : " + fechaUsuario);
-                System.out.println("Followers : " + userFollowers);
-                System.out.println("Friends : " + userFriends);
-                System.out.println("Favourites : " + userFavourites);
-                System.out.println("Verified : " + userVerified);
-                System.out.println("Date : " + fecha);
-                System.out.println("Text : " + text);
-                System.out.println("Hashtags : " + hashtags[0]);
-                System.out.println("Source : " + source);
-                System.out.println("Retweet : " + isRetweet);
-                System.out.println("\n\n");*/
 
             }
         }
