@@ -48,13 +48,14 @@ public class Test {
 
                 case "3":
 
-                    System.out.println("Ingrese el año: ");
-                    year = sc.nextInt();
-                    System.out.println("Ingrese el mes: ");
-                    month = sc.nextInt();
-                    System.out.println("Ingrese el dia: ");
-                    int day = sc.nextInt();
+                    System.out.println("Ingrese la fecha deseada en el formato YYYY-MM-DD: ");
                     sc.nextLine();
+                    String fecha = sc.nextLine();
+                    String[] fechaArray = fecha.split("-");
+                    year = Integer.parseInt(fechaArray[0]);
+                    month = Integer.parseInt(fechaArray[1]);
+                    int day = Integer.parseInt(fechaArray[2]);
+
                     if(year > 2022 || year < 2021){
                         System.out.println("El año ingresado no es valido");
                         break;
