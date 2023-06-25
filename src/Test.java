@@ -6,10 +6,12 @@ import java.util.SortedMap;
 
 public class Test {
     public static void main(String[] args) throws IOException {
+        String rutaDrivers = "src\\uy\\edu\\um\\prog2\\adt\\drivers.txt";
+        String rutaData = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
         Scanner sc = new Scanner(System.in);
         String option = "0";
         System.out.println("Cargando datos de tweets...");
-        F1Betting f1Betting = new F1Betting();
+        F1Betting f1Betting = new F1Betting(rutaData, rutaDrivers);
         System.out.println("Datos cargados correctamente");
 
 

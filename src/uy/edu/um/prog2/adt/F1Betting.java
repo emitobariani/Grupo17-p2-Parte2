@@ -53,13 +53,11 @@ public class F1Betting {
         this.hashtagLista = hashtagLista;
     }
 
-    public F1Betting() throws IOException {
-        String rutaDrivers = "src\\uy\\edu\\um\\prog2\\adt\\drivers.txt";
-        String rutaData = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
+    public F1Betting(String rutaData, String rutaDrivers) throws IOException {
         txtReader t = new txtReader();
         drivers = t.txtreader(rutaDrivers);
         LeerCSV data = new LeerCSV();
-        data.leerCSV();
+        data.leerCSV(rutaData);
         userLista = data.getUsers();
         tweetLista = data.getTweets();
         hashtagLista = data.getHashTags();

@@ -33,8 +33,6 @@ public class LeerCSV {
 
     private HashMap<Long, Boolean> nombresUsers = new HashMap<>();
 
-    private String ruta = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
-
     public Lista<User> getUsers() {
         return users;
     }
@@ -59,18 +57,10 @@ public class LeerCSV {
         this.tweets = tweets;
     }
 
-    public String getRuta() {
-        return ruta;
-    }
-
-    public void setRuta(String ruta) {
-        this.ruta = ruta;
-    }
-
-    public void leerCSV() throws IOException {
+    public void leerCSV(String ruta) throws IOException {
 
 
-        String SAMPLE_CSV_FILE_PATH = this.ruta;
+        String SAMPLE_CSV_FILE_PATH = ruta;
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
