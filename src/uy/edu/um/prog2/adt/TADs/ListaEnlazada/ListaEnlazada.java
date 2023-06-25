@@ -169,4 +169,6 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
     public Node<T> getLast() {
         return this.last;
     }
+
+
 }

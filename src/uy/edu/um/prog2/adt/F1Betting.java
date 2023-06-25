@@ -1,22 +1,15 @@
 package uy.edu.um.prog2.adt;
 
-import uy.edu.um.prog2.adt.Algoritmos.Quicksort;
 import uy.edu.um.prog2.adt.Entities.Driver;
 import uy.edu.um.prog2.adt.Entities.HashTag;
 import uy.edu.um.prog2.adt.Entities.Tweet;
 import uy.edu.um.prog2.adt.Entities.User;
-import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusqueda;
-import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusquedaImpl;
-import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
 import uy.edu.um.prog2.adt.TADs.Heap.Heap;
 import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
-import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Set;
 
 public class F1Betting {
 
@@ -105,17 +98,51 @@ public class F1Betting {
 
 
     public void Top15UsersConMasTweets() {
+
         MyHeap<User> top = new Heap(false);
         for (int i = 0; i < userLista.size(); i++) {
             User user = userLista.get(i);
             user.setCriterio("tweets");
             top.insert(user);
         }
+
         for (int i = 0; i < 15; i++) {
             User max = top.delete();
             System.out.println("Usuario: " + max.getName() + "\nCantidad de tweets: " + max.getTweetsList().size()+"\nVerificado: "+max.isVerified());
         }
 
+
+    }
+
+    public void tweetConFraseOPalabra(String texto){
+
+        int cantidadApariciones = 0;
+
+        for (int i = 0; i < tweetLista.size(); i++) {
+
+            if (tweetLista.get(i).getContent().contains(texto)){
+                cantidadApariciones+=1;
+            }
+
+        }
+        System.out.println("La cantidad de Tweets es:" + cantidadApariciones);
+    }
+
+    public void Top7UserFavourites(){
+
+        MyHeap<User> top = new Heap<>(false);
+        for(int i = 0; i < userLista.size(); i ++){
+            User user = userLista.get(i);
+            user.setCriterio("favoritos");
+            top.insert(user);
+        }
+
+
+
+        for(int i = 0; i < 7; i++){
+            User max = top.delete();
+            System.out.println("Usuario: " + max.getName() + " tiene " + max.getFavourites() +" favoritos");
+        }
     }
 }
 
