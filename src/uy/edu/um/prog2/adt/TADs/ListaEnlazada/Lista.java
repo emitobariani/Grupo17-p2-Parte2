@@ -11,5 +11,10 @@ public interface Lista <T>{
 
     int size();
 
+    boolean isEmpty();
+
+    Node<T> getFirst();
+
+    Node<T> getLast();
 
 }

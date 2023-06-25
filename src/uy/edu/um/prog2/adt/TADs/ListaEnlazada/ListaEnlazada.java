@@ -6,6 +6,7 @@ import uy.edu.um.prog2.adt.TADs.Queue.Queue;
 import uy.edu.um.prog2.adt.TADs.Stack.Stack;
 
 public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
+    private int size = 0;
 
     private Node<T> first, last = null;
     public ListaEnlazada(){
@@ -21,9 +22,11 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
                 this.last = nuevoNodo;
             } else {
                 this.last.setNext(nuevoNodo);
+                nuevoNodo.setPrevious(this.last);
                 this.last = nuevoNodo;
             }
         }
+        size++;
 
     }
     public void addToTheBeginning(T nodo){
@@ -34,9 +37,11 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
                 this.last = nuevoNodo;
             } else {
                 nuevoNodo.setNext(this.first);
+                this.first.setPrevious(nuevoNodo);
                 this.first = nuevoNodo;
             }
         }
+        size++;
     }
 
     @Override
@@ -85,6 +90,7 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
                 nodoBuscado.setNext(null);
             }
         }
+        size--;
 
     }
 
@@ -93,6 +99,7 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
         if (this.last != null) {
             nodoRemovido = this.last.getValue();
             this.remove(nodoRemovido);
+            size--;
         }
         return nodoRemovido;
     }
@@ -101,6 +108,7 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
     @Override
     public void enqueue(T nodo) {
         this.addToTheBeginning(nodo);
+        size++;
 
     }
 
@@ -108,7 +116,8 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
     public T dequeue() throws EmptyQueueException {
         if(this.last==null){
             throw new EmptyQueueException();
-        }else{return this.removeLastElement();}
+        }else{size--;return this.removeLastElement();}
+
     }
 
     @Override
@@ -126,6 +135,7 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
     @Override
     public void push(T value) {
         this.add(value);
+        size++;
 
     }
 
@@ -133,7 +143,7 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
     public T pop() throws EmptyStackException {
         if(this.last==null){
             throw new EmptyStackException();
-        }else{return this.removeLastElement();}
+        }else{size--; return this.removeLastElement();}
     }
 
     @Override
@@ -145,10 +155,18 @@ public class ListaEnlazada<T> implements Queue<T>, Stack<T>, Lista<T> {
 
     @Override
     public int size() {
-        int size = 0;
-        for(Node<T> aux = this.first; aux != null; ++size){
-            aux = aux.getNext();
-        }
-        return size;
+        return this.size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return this.first == null;
+    }
+
+    public Node<T> getFirst() {
+        return this.first;
+    }
+    public Node<T> getLast() {
+        return this.last;
     }
 }

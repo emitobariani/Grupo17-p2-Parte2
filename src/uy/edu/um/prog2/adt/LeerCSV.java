@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import java.util.List;
 
 public class LeerCSV {
@@ -30,7 +31,9 @@ public class LeerCSV {
     private Lista<HashTag> hashTags = new ListaEnlazada<>();
     private Lista<Tweet> tweets = new ListaEnlazada<>();
 
-    private String ruta = "C:\\Users\\Emiliano\\Desktop\\data\\f1_dataset_test.csv";
+    private HashMap<Long, Boolean> nombresUsers = new HashMap<>();
+
+    private String ruta = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
 
     public Lista<User> getUsers() {
         return users;
@@ -64,92 +67,58 @@ public class LeerCSV {
         this.ruta = ruta;
     }
 
-    public  void leerCSV() throws IOException {
+    public void leerCSV() throws IOException {
+
 
         String SAMPLE_CSV_FILE_PATH = this.ruta;
         try (
                 Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH));
                 CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT);
+
         ) {
-            csvParser.iterator().next();
             for (CSVRecord csvRecord : csvParser) {
+                if (csvRecord.getRecordNumber() == 1) {
+                    continue;
+                }
                 // Accedemos a los valores del archivo CSV
                 Long id = Long.parseLong(csvRecord.get(0));
-
                 String userName = csvRecord.get(1);
-
-                String userLocation = csvRecord.get(2);
-
-                String userDescription = csvRecord.get(3);
-
-                String userFollowers = csvRecord.get(5);
-
-                String userFriends = csvRecord.get(6);
-
                 Integer userFavourites = 0;
-
                 boolean userVerified = Boolean.parseBoolean(csvRecord.get(8));
-
-                String text = csvRecord.get(10);
-
-                String hashtagValues = csvRecord.get(11).replaceAll("[\\[\\]]", "").replaceAll("'", "");
-
+                String text = csvRecord.get(10).toLowerCase();
+                String hashtagValues = csvRecord.get(11).replaceAll("[\\[\\]]", "").replaceAll("'", "").toLowerCase();
                 String[] hashtags = hashtagValues.split(",");
-
-                String source = csvRecord.get(12);
-
                 boolean isRetweet = Boolean.parseBoolean(csvRecord.get(13));
-
                 DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
                 LocalDate fecha = null;
-
-                LocalDate fechaUsuario = null;
-
                 String date = csvRecord.get(9);
-
                 String[] dateParts = date.split(" ");
-
                 String tweetDateDay = dateParts[0];
-
                 if (isValidDate(tweetDateDay, formatoFecha)) {
                     fecha = LocalDate.parse(tweetDateDay, formatoFecha);
                 }
-
-                String userCreated = csvRecord.get(4);
-
-                String[] userCreatedParts = userCreated.split(" ");
-
-                String userCreatedDate = userCreatedParts[0];
-
-                if (isValidDate(userCreatedDate, formatoFecha)) {
-                    fechaUsuario = LocalDate.parse(userCreatedDate, formatoFecha);
-                }
-
-                if(isValidFloat(csvRecord.get(7))){
+                if (isValidFloat(csvRecord.get(7))) {
                     userFavourites = Math.round(Float.parseFloat(csvRecord.get(7)));
                 }
+                User user = new User(id, userName, userFavourites, userVerified);
 
-                User user = new User(id,userName,userFavourites,userVerified);
-
-                Tweet tweet = new Tweet(id,text,source,fecha,isRetweet);
-
-                for (int i = 0; i < hashtags.length; i++) {
-                    HashTag hashTag = new HashTag(id,hashtags[i],fecha);
-                    tweet.getHashTagLista().add(hashTag);
-                    hashTags.add(hashTag);
-                }
-
+                Tweet tweet = new Tweet(id, text, fecha, isRetweet);
                 tweets.add(tweet);
 
-                if(users.contains(user)){
-                    user = users.getNodo(user);
-                    user.getTweetLista().add(tweet);
-                }else{
-                    user.getTweetLista().add(tweet);
-                    users.add(user);
-                }
+                for (int i = 0; i < hashtags.length; i++) {
+                    HashTag hashTag = new HashTag(id, hashtags[i], fecha);
+                    tweet.getHashTagLista().add(hashTag);
+                    hashTags.add(hashTag);
 
+                }
+                if (nombresUsers.get(id) == null) {
+                    user.getTweetsList().add(tweet);
+                    users.add(user);
+                    nombresUsers.put(id, true);
+
+                } else {
+                    users.getNodo(user).getTweetsList().add(tweet);
+                }
 
 
 
@@ -169,11 +138,11 @@ public class LeerCSV {
     }
 
 
-    private static boolean isValidFloat(String number){
-        try{
+    private static boolean isValidFloat(String number) {
+        try {
             Float.parseFloat(number);
             return true;
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }

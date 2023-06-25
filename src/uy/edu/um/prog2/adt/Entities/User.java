@@ -11,7 +11,7 @@ public class User {
         this.name = name;
         this.favourites = favourites;
         this.verified = verified;
-        this.tweetLista = new ListaEnlazada<>();
+        this.tweetsList = new ListaEnlazada<>();
     }
 
     private long id;
@@ -20,7 +20,15 @@ public class User {
 
     private boolean verified;
 
-    private Lista<Tweet> tweetLista;
+    private Lista<Tweet> tweetsList = new ListaEnlazada<>();
+
+    public Lista<Tweet> getTweetsList() {
+        return tweetsList;
+    }
+
+    public void setTweetsList(Lista<Tweet> tweetsList) {
+        this.tweetsList = tweetsList;
+    }
 
     public int getFavourites() {
         return favourites;
@@ -38,13 +46,6 @@ public class User {
         this.verified = verified;
     }
 
-    public Lista<Tweet> getTweetLista() {
-        return tweetLista;
-    }
-
-    public void setTweetLista(Lista<Tweet> tweetLista) {
-        this.tweetLista = tweetLista;
-    }
 
     public long getId() {
         return id;
@@ -75,4 +76,7 @@ public class User {
         return Objects.equals(id, u.getId());
     }
 }
+
+
+
 

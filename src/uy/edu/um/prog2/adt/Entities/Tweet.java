@@ -8,10 +8,9 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Tweet {
-    public Tweet(long id, String content, String source,LocalDate date, boolean isRetweet) {
+    public Tweet(long id, String content,LocalDate date, boolean isRetweet) {
         this.id = id;
         this.content = content;
-        this.source = source;
         this.isRetweet = isRetweet;
         this.date = date;
         this.hashTagLista = new ListaEnlazada<>();
@@ -55,14 +54,6 @@ public class Tweet {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
     }
 
     public boolean isRetweet() {
