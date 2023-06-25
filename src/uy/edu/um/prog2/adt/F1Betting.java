@@ -9,6 +9,7 @@ import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusqueda;
 import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusquedaImpl;
 import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
 import uy.edu.um.prog2.adt.TADs.Heap.Heap;
+import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 
@@ -62,14 +63,14 @@ public class F1Betting {
         String rutaData = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
         txtReader t = new txtReader();
         drivers = t.txtreader(rutaDrivers);
-       LeerCSV data = new LeerCSV();
-       data.leerCSV();
+        LeerCSV data = new LeerCSV();
+        data.leerCSV();
         userLista = data.getUsers();
         tweetLista = data.getTweets();
         hashtagLista = data.getHashTags();
     }
 
-    public void top10DriversByMenciones (int month, int year) {
+    public void top10DriversByMenciones(int month, int year) {
         Driver driver = null;
         Heap<Driver> top = new Heap<>(false);
         for (int j = 0; j < tweetLista.size(); j++) {
@@ -82,8 +83,8 @@ public class F1Betting {
                 int y = date.getYear();
                 if (m == month && y == year) {
                     for (int i = 0; i < drivers.size(); i++) {
-                          driver = drivers.get(i);
-                        if (tweet.getContent().contains(driver.getName())){
+                        driver = drivers.get(i);
+                        if (tweet.getContent().contains(driver.getName())) {
                             driver.addMencion();
                         }
                     }
@@ -98,19 +99,23 @@ public class F1Betting {
 
         for (int i = 0; i < 10; i++) {
             Driver max = top.delete();
-            System.out.println("Piloto: "+max.getName()+"  "+" Menciones: "+max.getMenciones());
+            System.out.println("Piloto: " + max.getName() + "  " + " Menciones: " + max.getMenciones());
         }
     }
 
 
-
-
-
-
-    public void impimirContent(){
-        for (int i = 0; i < tweetLista.size(); i++) {
-            System.out.println(tweetLista.get(i).getContent());
+    public void Top15UsersConMasTweets() {
+        MyHeap<User> top = new Heap(false);
+        for (int i = 0; i < userLista.size(); i++) {
+            User user = userLista.get(i);
+            user.setCriterio("tweets");
+            top.insert(user);
         }
+        for (int i = 0; i < 15; i++) {
+            User max = top.delete();
+            System.out.println("Usuario: " + max.getName() + "\nCantidad de tweets: " + max.getTweetsList().size()+"\nVerificado: "+max.isVerified());
+        }
+
     }
 }
 

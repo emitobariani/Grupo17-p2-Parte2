@@ -5,7 +5,7 @@ import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 
 import java.util.Objects;
 
-public class User {
+public class User implements Comparable<User> {
     public User(long id, String name, int favourites, boolean verified) {
         this.id = id;
         this.name = name;
@@ -19,6 +19,15 @@ public class User {
     private int favourites;
 
     private boolean verified;
+    private String criterio;
+
+    public String getCriterio() {
+        return criterio;
+    }
+
+    public void setCriterio(String criterio) {
+        this.criterio = criterio;
+    }
 
     private Lista<Tweet> tweetsList = new ListaEnlazada<>();
 
@@ -74,6 +83,30 @@ public class User {
         }
         User u = (User) o;
         return Objects.equals(id, u.getId());
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if(criterio.equals("favoritos")) {
+            if (this.favourites > o.getFavourites()) {
+                return 1;
+            } else if (this.favourites < o.getFavourites()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
+        if(criterio.equals("tweets")){
+            if (this.tweetsList.size() > o.getTweetsList().size()) {
+                return 1;
+            } else if (this.tweetsList.size() < o.getTweetsList().size()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }else{
+            return 0;
+        }
     }
 }
 

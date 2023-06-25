@@ -28,8 +28,10 @@ public class Test {
                     f1Betting.top10DriversByMenciones(month, year);
                     break;
                     case 2:
-                        System.out.println("imprimir contenido de la lista de tweets");
-                        f1Betting.impimirContent();
+                        System.out.println("-----------------------------------");
+                        System.out.println("Usuarios con mas cantidad de tweets");
+                        System.out.println("-----------------------------------");
+                        f1Betting.Top15UsersConMasTweets();
             }
 
         } while (option != 0);
