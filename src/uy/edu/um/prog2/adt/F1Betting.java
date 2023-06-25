@@ -4,9 +4,11 @@ import uy.edu.um.prog2.adt.Entities.Driver;
 import uy.edu.um.prog2.adt.Entities.HashTag;
 import uy.edu.um.prog2.adt.Entities.Tweet;
 import uy.edu.um.prog2.adt.Entities.User;
+import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
 import uy.edu.um.prog2.adt.TADs.Heap.Heap;
 import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
+import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -108,7 +110,8 @@ public class F1Betting {
 
         for (int i = 0; i < 15; i++) {
             User max = top.delete();
-            System.out.println("Usuario: " + max.getName() + "\nCantidad de tweets: " + max.getTweetsList().size()+"\nVerificado: "+max.isVerified());
+
+            System.out.println("Usuario: " + max.getName() + "\nCantidad de tweets: " + max.getTweetsList().size()+"\nVerificado: "+(max.isVerified() ? "Si" : "No"));
         }
 
 
@@ -143,6 +146,30 @@ public class F1Betting {
             User max = top.delete();
             System.out.println("Usuario: " + max.getName() + " tiene " + max.getFavourites() +" favoritos");
         }
+    }
+
+    public void cantidadDeHashtagsDistintos(int year, int month, int day) {
+        int cantidad = 0;
+        HashMap<String, Integer> hashTagMap = new HashMap<>();
+        for (int i = 0; i < hashtagLista.size(); i++) {
+            HashTag hashTag = hashtagLista.get(i);
+            if(hashTagMap.get(hashTag.getText()) != null){
+                continue;}
+
+            if (hashTag.getDate() == null) {
+                continue;
+            } else {
+                LocalDate date = hashTag.getDate();
+                int m = date.getMonthValue();
+                int y = date.getYear();
+                int d = date.getDayOfMonth();
+                if (m == month && y == year && d == day) {
+                    hashTagMap.add(hashTag.getText(),1);
+                    cantidad++;
+                }
+            }
+        }
+        System.out.println("La cantidad de hashtags distintos es: " + cantidad);
     }
 }
 
