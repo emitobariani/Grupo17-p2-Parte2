@@ -177,7 +177,7 @@ public class F1Betting {
         HashMap<String, Integer> hashTagMap = new HashMap<>();
         for (int i = 0; i < hashtagLista.size(); i++) {
             HashTag hashTag = hashtagLista.get(i);
-            if(hashTag.getText().equals("f1")){
+            if(hashTag.getText().contains("f1")){
                 continue;
             }
             if (hashTag.getDate() == null) {

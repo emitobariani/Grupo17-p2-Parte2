@@ -15,7 +15,7 @@ public class Test {
 
         do {
 
-            System.out.println("Ingrese 1 para ver el Listar los 10 pilotos activos en la temporada 2023 más mencionados en los tweets en un mes");
+            System.out.println("\nIngrese 1 para ver el Listar los 10 pilotos activos en la temporada 2023 más mencionados en los tweets en un mes");
             System.out.println("Ingrese 2 para ver Top 15 usuarios con más tweets");
             System.out.println("Ingrese 3 para ver Cantidad de hashtags distintos para un día dado. El día será ingresado en el formato YYYY-MM-DD.");
             System.out.println("Ingrese 4 para ver Hashtag más usado para un día dado en el formato YYYY-MM-DD.");
