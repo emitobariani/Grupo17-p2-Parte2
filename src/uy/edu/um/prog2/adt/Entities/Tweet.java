@@ -8,12 +8,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Tweet {
-    public Tweet(long id, String content,LocalDate date, boolean isRetweet) {
+    public Tweet(long id, String content,LocalDate date, boolean isRetweet, String source) {
         this.id = id;
         this.content = content;
         this.isRetweet = isRetweet;
         this.date = date;
         this.hashTagLista = new ListaEnlazada<>();
+        this.source = source;
     }
 
     private long id;

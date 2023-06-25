@@ -78,6 +78,7 @@ public class LeerCSV {
                 String text = csvRecord.get(10).toLowerCase();
                 String hashtagValues = csvRecord.get(11).replaceAll("[\\[\\]]", "").replaceAll("'", "").toLowerCase();
                 String[] hashtags = hashtagValues.split(",");
+                String source = csvRecord.get(12);
                 boolean isRetweet = Boolean.parseBoolean(csvRecord.get(13));
                 DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate fecha = null;
@@ -92,7 +93,7 @@ public class LeerCSV {
                 }
                 User user = new User(id, userName, userFavourites, userVerified);
 
-                Tweet tweet = new Tweet(id, text, fecha, isRetweet);
+                Tweet tweet = new Tweet(id, text, fecha, isRetweet, source);
                 tweets.add(tweet);
 
                 for (int i = 0; i < hashtags.length; i++) {

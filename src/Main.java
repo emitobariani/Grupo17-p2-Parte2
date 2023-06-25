@@ -33,29 +33,22 @@ import static org.apache.commons.csv.CSVFormat.newFormat;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Lista<Driver> drivers = new ListaEnlazada<>();
-        Driver driver1 = new Driver("lewis hamilton");
-        driver1.setMenciones(100);
-        Driver driver2 = new Driver("valtteri bottas");
-        driver2.setMenciones(50);
-        Driver driver3 = new Driver("max verstappen");
-        driver3.setMenciones(30);
-        Driver driver4 = new Driver("alexander albon");
-        drivers.add(driver1);
-        drivers.add(driver2);
-        drivers.add(driver3);
-        drivers.add(driver4);
-
-
-        Driver[] driversArray = new Driver[drivers.size()];
-        for (int i = 0; i < drivers.size(); i++) {
-            driversArray[i] = drivers.get(i);
-        }
-        System.out.println("Drivers sin ordenar");
-        for (int i = 0; i < driversArray.length; i++) {
-            System.out.println(driversArray[i].getName());
-        }
-        System.out.println("Drivers ordenados");
+        // revisando memoria
+        String rutaData =  "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
+        String rutaDrivers = "src\\uy\\edu\\um\\prog2\\adt\\drivers.txt";
+        F1Betting f1Betting = new F1Betting(rutaData, rutaDrivers);
+        //revisando memoria de la funcion 1
+        //while(true){f1Betting.top10DriversByMenciones(11,2021);}
+        //revisando memoria de la funcion 2
+        //while(true){f1Betting.Top15UsersConMasTweets();}
+        //revisando memoria de la funcion 3
+        //while(true){f1Betting.cantidadDeHashtagsDistintos(2021,10,12);}
+        //revisando memoria de la funcion 4
+        //while(true){ f1Betting.hashTagMasUsado(2021,12,10);}
+        //revisando memoria de la funcion 5
+        //while(true){f1Betting.Top7UserFavourites();}
+        //revisando memoria de la funcion 6
+        //while(true){f1Betting.tweetConFraseOPalabra("ferrari");}
 
 
 
