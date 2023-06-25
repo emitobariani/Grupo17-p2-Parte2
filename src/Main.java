@@ -38,7 +38,10 @@ public class Main {
         String rutaDrivers = "src\\uy\\edu\\um\\prog2\\adt\\drivers.txt";
         F1Betting f1Betting = new F1Betting(rutaData, rutaDrivers);
         //revisando memoria de la funcion 1
-        //while(true){f1Betting.top10DriversByMenciones(11,2021);}
+        long startTime = System.nanoTime();
+        f1Betting.top10DriversByMenciones(11,2021);
+        long endTime = System.nanoTime();
+        System.out.println("Tiempo de ejecucion: " + (endTime - startTime) + " nanosegundos");
         //revisando memoria de la funcion 2
         //while(true){f1Betting.Top15UsersConMasTweets();}
         //revisando memoria de la funcion 3
