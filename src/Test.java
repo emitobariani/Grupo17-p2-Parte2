@@ -73,6 +73,27 @@ public class Test {
 
 
                 case "4":
+                    System.out.println("Ingrese la fecha deseada en el formato YYYY-MM-DD: ");
+                    sc.nextLine();
+                    fecha = sc.nextLine();
+                    fechaArray = fecha.split("-");
+                    year = Integer.parseInt(fechaArray[0]);
+                    month = Integer.parseInt(fechaArray[1]);
+                    day = Integer.parseInt(fechaArray[2]);
+
+                    if(year > 2022 || year < 2021){
+                        System.out.println("El año ingresado no es valido");
+                        break;
+                    }
+                    if(month > 12 || month < 1){
+                        System.out.println("El mes ingresado no es valido");
+                        break;
+                    }
+                    if(day > 31 || day < 1){
+                        System.out.println("El dia ingresado no es valido");
+                        break;
+                    }
+                    f1Betting.hashTagMasUsado(year, month, day);
                     break;
 
 

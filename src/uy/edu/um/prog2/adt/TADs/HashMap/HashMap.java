@@ -96,6 +96,18 @@ public class HashMap<K, Intger> {
         return null;
     }
 
+    public int getValue(K key) {
+        int index = hash(key);
+        Nodo<K, Intger> nodo = table[index];
+        while (nodo != null) {
+            if (nodo.key.equals(key)) {
+                return nodo.value;
+            }
+            nodo = nodo.next;
+        }
+        return 0;
+    }
+
     public int getSize() {
         return this.size;
     }

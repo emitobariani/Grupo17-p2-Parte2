@@ -171,6 +171,37 @@ public class F1Betting {
         }
         System.out.println("La cantidad de hashtags distintos es: " + cantidad);
     }
+    public void hashTagMasUsado(int year, int month, int day) {
+        int cantidad = 0;
+        String hashTagMasUsado = "";
+        HashMap<String, Integer> hashTagMap = new HashMap<>();
+        for (int i = 0; i < hashtagLista.size(); i++) {
+            HashTag hashTag = hashtagLista.get(i);
+            if(hashTag.getText().equals("f1")){
+                continue;
+            }
+            if (hashTag.getDate() == null) {
+                continue;
+            } else {
+                LocalDate date = hashTag.getDate();
+                int m = date.getMonthValue();
+                int y = date.getYear();
+                int d = date.getDayOfMonth();
+                if (m == month && y == year && d == day) {
+                    if(hashTagMap.get(hashTag.getText()) != null){
+                        hashTagMap.add(hashTag.getText(),hashTagMap.getValue(hashTag.getText())+1);
+                    }else{
+                        hashTagMap.add(hashTag.getText(),1);
+                    }
+                    if(hashTagMap.getValue(hashTag.getText()) > cantidad){
+                        cantidad = hashTagMap.getValue(hashTag.getText());
+                        hashTagMasUsado = hashTag.getText();
+                    }
+                }
+            }
+        }
+        System.out.println("El hashtag mas usado es: " + hashTagMasUsado);
+    }
 }
 
 
