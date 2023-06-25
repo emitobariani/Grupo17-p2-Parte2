@@ -2,9 +2,8 @@ import uy.edu.um.prog2.adt.F1Betting;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.SortedMap;
 
-public class Test {
+public class Principal {
     public static void main(String[] args) throws IOException {
         String rutaDrivers = "src\\uy\\edu\\um\\prog2\\adt\\drivers.txt";
         String rutaData = "src\\uy\\edu\\um\\prog2\\adt\\f1_dataset_test.csv";
@@ -42,9 +41,9 @@ public class Test {
                     break;
 
                 case "2":
-                    System.out.println("-----------------------------------");
+
                     System.out.println("Usuarios con mas cantidad de tweets");
-                    System.out.println("-----------------------------------");
+
                     f1Betting.Top15UsersConMasTweets();
                     break;
 
@@ -100,9 +99,9 @@ public class Test {
 
 
                 case "5":
-                    System.out.println("-----------------------------------");
+
                     System.out.println("Usuarios con mas cantidad de favoritos");
-                    System.out.println("-----------------------------------");
+
                     f1Betting.Top7UserFavourites();
                     break;
 
