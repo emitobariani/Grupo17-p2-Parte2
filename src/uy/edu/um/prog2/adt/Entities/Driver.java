@@ -1,6 +1,6 @@
 package uy.edu.um.prog2.adt.Entities;
 
-public class Driver {
+public class Driver implements Comparable<Driver> {
     private String name;
     private int menciones;
 
@@ -26,5 +26,16 @@ public class Driver {
 
     public void addMencion(){
         this.menciones++;
+    }
+
+    @Override
+    public int compareTo(Driver o) {
+        if(this.menciones > o.getMenciones()){
+            return 1;
+    }else if(this.menciones < o.getMenciones()){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }

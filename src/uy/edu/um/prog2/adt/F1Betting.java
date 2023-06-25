@@ -8,6 +8,7 @@ import uy.edu.um.prog2.adt.Entities.User;
 import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusqueda;
 import uy.edu.um.prog2.adt.TADs.ArbolBinario.ArbolBinarioBusquedaImpl;
 import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
+import uy.edu.um.prog2.adt.TADs.Heap.Heap;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 
@@ -68,41 +69,43 @@ public class F1Betting {
         hashtagLista = data.getHashTags();
     }
 
-    public void top10DriversByMenciones (int month, int year){
-        Lista<Driver> top;
-            for (int j = 0; j < tweetLista.size(); j++) {
-                Tweet tweet = tweetLista.get(j);
-                if(tweet.getDate() == null){
-                    continue;
-                }else {
-                    LocalDate date = tweet.getDate();
-                    int m = date.getMonthValue();
-                    int y = date.getYear();
-                    if(m == month && y == year){
-                        for (int i = 0; i < drivers.size(); i++) {
-                            Driver driver = drivers.get(i);
-                            if (tweet.getContent().contains(driver.getName())){
-                                driver.addMencion();
-                            }
+    public void top10DriversByMenciones (int month, int year) {
+        Driver driver = null;
+        Heap<Driver> top = new Heap<>(false);
+        for (int j = 0; j < tweetLista.size(); j++) {
+            Tweet tweet = tweetLista.get(j);
+            if (tweet.getDate() == null) {
+                continue;
+            } else {
+                LocalDate date = tweet.getDate();
+                int m = date.getMonthValue();
+                int y = date.getYear();
+                if (m == month && y == year) {
+                    for (int i = 0; i < drivers.size(); i++) {
+                          driver = drivers.get(i);
+                        if (tweet.getContent().contains(driver.getName())){
+                            driver.addMencion();
                         }
-
                     }
+
                 }
             }
-
-        Quicksort sort = new Quicksort();
-
-        top = sort.quickSort(getDrivers());
-        for (int i = 0; i < 10; i++) {
-            System.out.println(top.get(i).getName() + " " + top.get(i).getMenciones());
         }
 
+        for (int i = 0; i < drivers.size(); i++) {
+            top.insert(drivers.get(i));
+        }
 
-
-
-
-
+        for (int i = 0; i < 10; i++) {
+            Driver max = top.delete();
+            System.out.println("Piloto: "+max.getName()+"  "+" Menciones: "+max.getMenciones());
+        }
     }
+
+
+
+
+
 
     public void impimirContent(){
         for (int i = 0; i < tweetLista.size(); i++) {

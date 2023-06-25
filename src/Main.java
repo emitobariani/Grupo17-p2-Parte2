@@ -1,11 +1,14 @@
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import uy.edu.um.prog2.adt.Entities.Driver;
 import uy.edu.um.prog2.adt.Entities.Tweet;
 import uy.edu.um.prog2.adt.Entities.User;
 import uy.edu.um.prog2.adt.F1Betting;
 import uy.edu.um.prog2.adt.LeerCSV;
 import uy.edu.um.prog2.adt.TADs.HashMap.HashMap;
+import uy.edu.um.prog2.adt.TADs.Heap.Heap;
+import uy.edu.um.prog2.adt.TADs.Heap.MyHeap;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.Lista;
 import uy.edu.um.prog2.adt.TADs.ListaEnlazada.ListaEnlazada;
 import uy.edu.um.prog2.adt.txtReader;
@@ -29,13 +32,30 @@ import static org.apache.commons.csv.CSVFormat.newFormat;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Lista<Tweet> s = new ListaEnlazada<>();
-        Tweet t = new Tweet(1,"today is a great day for lewis hamilton",LocalDate.of(2022,10,10),true);
-        s.add(t);
+        Lista<Driver> drivers = new ListaEnlazada<>();
+        Driver driver1 = new Driver("lewis hamilton");
+        driver1.setMenciones(100);
+        Driver driver2 = new Driver("valtteri bottas");
+        driver2.setMenciones(50);
+        Driver driver3 = new Driver("max verstappen");
+        driver3.setMenciones(30);
+        Driver driver4 = new Driver("alexander albon");
+        driver4.setMenciones(20);
+        drivers.add(driver1);
+        drivers.add(driver2);
+        drivers.add(driver3);
+        drivers.add(driver4);
 
-        for (int i = 0; i < s.size(); i++) {
-            System.out.println(s.get(i).getContent().contains("lewis hamilton"));
+        MyHeap<Driver> heap = new Heap<>(false);
+
+        heap.insert(driver1);
+        heap.insert(driver2);
+        heap.insert(driver3);
+        heap.insert(driver4);
+        for (int i = 0; i < 4; i++) {
+            System.out.println(heap.delete().getName());
         }
+
     }
 
     }
